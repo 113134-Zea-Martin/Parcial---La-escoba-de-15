@@ -1,8 +1,10 @@
 package ar.edu.utn.frc.tup.lciii;
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.support.ReflectionSupport;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +66,7 @@ class DeckTest {
         deck.getCards().clear();
         assertTrue(deck.isEmpty());
 
-        Card card = new Card(CardSuit.BASTOS,5,1);
+        Card card = new Card(CardSuit.BASTOS, 5, 1);
         deck.getCards().add(card);
 
         assertFalse(deck.isEmpty());
@@ -92,10 +94,10 @@ class DeckTest {
         // TODO: Crear un test que valide que al mezclar el mazo, las cartas no están en el mismo orden
         //  que al crear el mazo.
         //fail("Not implemented yet");
-    } */
+    }*/
 
     @Test
-    void shuffleDeckTest2() throws Exception {
+    void shuffleDeckTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         // Crea un mazo
         Deck deck = new Deck();
 
@@ -114,3 +116,4 @@ class DeckTest {
         assertNotEquals(originalOrder, deck.getCards());
     }
 }
+

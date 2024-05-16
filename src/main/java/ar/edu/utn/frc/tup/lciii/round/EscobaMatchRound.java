@@ -199,11 +199,13 @@ public class EscobaMatchRound {
      * @see EscobaMatchRound#sevenQuantity(List)
      */
     private void solveSevenWinner() {
-        int appSevens = sevenQuantity(roundPlayerHuman.getPersonalDeck());
-        int humanSevens = sevenQuantity(roundPlayerApp.getPersonalDeck());
+        int appSevens = sevenQuantity(roundPlayerApp.getPersonalDeck());
+        int humanSevens = sevenQuantity(roundPlayerHuman.getPersonalDeck());
         if (humanSevens > appSevens) {
             LetterByLetterPrinter.println("El jugador gana 1 punto por tener la mayor cantidad de sietes.");
-            roundPlayerHuman.setRoundPoints(roundPlayerHuman.getRoundPoints() + 1);
+            //roundPlayerHuman.setRoundPoints(roundPlayerHuman.getRoundPoints() + 1);
+            int aux = roundPlayerHuman.getRoundPoints() + 1;
+            roundPlayerHuman.setRoundPoints(aux);
             if (humanSevens == 4) {
                 LetterByLetterPrinter.println("El jugador gana 1 punto extra por tener todos los sietes.");
                 roundPlayerHuman.setRoundPoints(roundPlayerHuman.getRoundPoints() + 1);

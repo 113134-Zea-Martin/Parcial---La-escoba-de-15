@@ -30,6 +30,7 @@ public class EscobaGame {
         return scanner;
     }
 
+
     /**
      * Este método setea el Scanner del Game
      *

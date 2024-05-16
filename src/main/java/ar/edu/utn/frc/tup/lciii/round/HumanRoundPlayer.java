@@ -63,27 +63,28 @@ public class HumanRoundPlayer extends RoundPlayer {
      * @see LetterByLetterPrinter#println(String)
      */
     private Integer getCardToPlay() {
-        LetterByLetterPrinter.println("This are the cards in your hand:" + System.lineSeparator());
+        LetterByLetterPrinter.println("This are the cards in your hand:");
         int indice = 0;
         for (Card card : this.getHandCards()) {
-            System.out.println(indice + " - " + "CardSuit = " + card.getCardSuit() + ", número = " + card.getNumber() +
-                    ", value = " + card.getValue());
+            //System.out.println(indice + " - " + "CardSuit = " + card.getCardSuit() + ", número = " + card.getNumber() +
+            //        ", value = " + card.getValue());
+            System.out.println(indice + " - " + card.getNumber() + " de " + card.getCardSuit());
             indice++;
         }
 
         boolean indiceIncorrecto = true;
         int cartaSeleccionada = -1;
         do {
-            LetterByLetterPrinter.println("Please, select a card to play:" + System.lineSeparator());
+            LetterByLetterPrinter.println("Please, select a card to play:");
             try {
                 cartaSeleccionada = scanner.nextInt();
                 if (cartaSeleccionada >= 0 && cartaSeleccionada < this.getHandCards().size()) {
                     indiceIncorrecto = false;
                 } else {
-                    LetterByLetterPrinter.println("Invalid card. Please, select a valid card." + System.lineSeparator());
+                    LetterByLetterPrinter.println("Invalid card. Please, select a valid card.");
                 }
             } catch (InputMismatchException e) {
-                LetterByLetterPrinter.println("Invalid input. Please, insert a number to get a valid option." + System.lineSeparator());
+                LetterByLetterPrinter.println("Invalid input. Please, insert a number to get a valid option.");
                 scanner.nextLine();
             }
         } while (indiceIncorrecto);
