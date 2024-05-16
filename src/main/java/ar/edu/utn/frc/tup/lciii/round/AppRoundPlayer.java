@@ -171,9 +171,17 @@ public class AppRoundPlayer extends RoundPlayer {
 
         // TODO: Implementar lógica para seleccionar el subconjunto que contenga el 7 de oro.DONE
 
+        for (List<Card> conjunto : subconjuntos) {
+            for (Card card : conjunto) {
+                if (card.getNumber() == 7 && card.getCardSuit() == CardSuit.OROS) {
+                    return conjunto;
+                }
+            }
+        }
+        return null;
 
         // Itera sobre cada subconjunto en la lista de subconjuntos
-        for (List<Card> subconjunto : subconjuntos) {
+       /* for (List<Card> subconjunto : subconjuntos) {
             // Comprueba si el subconjunto contiene al menos una carta con el número 7 y el palo de oro
             boolean containsSevenOro = subconjunto.stream().anyMatch(card -> card.getNumber() == 7 && card.getCardSuit() == CardSuit.OROS);
             // Si se encuentra una carta con el número 7 y el palo de oro, retorna el subconjunto
@@ -183,6 +191,7 @@ public class AppRoundPlayer extends RoundPlayer {
         }
         // Si no se encuentra ningún subconjunto que contenga el 7 de oro, retorna null
         return null;
+        */
 
 
     }
@@ -194,7 +203,24 @@ public class AppRoundPlayer extends RoundPlayer {
      * @return el subconjunto que contiene más oros o null si no existe.
      */
     private List<Card> getCardsWithMoreOros(List<List<Card>> subconjuntos) {
+        int maxOros = 0;
+        List<Card> subconjuntoConMasOros = null;
+
+        for (List<Card> conjunto : subconjuntos) {
+            int countOros = 0;
+            for (Card card : conjunto) {
+                if (card.getCardSuit() == CardSuit.OROS) {
+                    countOros++;
+                }
+            }
+            if (countOros > maxOros) {
+                maxOros = countOros;
+                subconjuntoConMasOros = conjunto;
+            }
+        }
+        return subconjuntoConMasOros;
         // TODO: Implementar lógica para seleccionar el subconjunto que contenga más cartas de oro.DONE
+        /*
         List<Card> subconjuntoConMasOros = null;
         int maxOros = 0;
 
@@ -217,7 +243,7 @@ public class AppRoundPlayer extends RoundPlayer {
         // Retorna el subconjunto con más cartas de oro o null si no se encontró ninguno
         return subconjuntoConMasOros;
 
-
+         */
     }
 
 }

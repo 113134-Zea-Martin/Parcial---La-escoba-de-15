@@ -98,7 +98,7 @@ class DeckTest {
     }*/
 
     @Test
-    void shuffleDeckTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void shuffleDeckTest() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Deck deck = new Deck();
         Stack<Card> originalDeck = (Stack<Card>) deck.getCards().clone();
         Stack<Card> shuffledDeck = new Stack<>();
