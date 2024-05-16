@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -98,22 +99,20 @@ class DeckTest {
 
     @Test
     void shuffleDeckTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        // Crea un mazo
         Deck deck = new Deck();
+        Stack<Card> originalDeck = (Stack<Card>) deck.getCards().clone();
+        Stack<Card> shuffledDeck = new Stack<>();
 
-        // Copia el mazo original
-        Stack<Card> originalOrder = new Stack<>();
-        originalOrder.addAll(deck.getCards());
+        Method shuffleDeckMethod = Deck.class.getDeclaredMethod("shuffleDeck");
+        shuffleDeckMethod.setAccessible(true);
 
-        // Utiliza reflexión para obtener el método shuffleDeck()
-        Method shuffleMethod = Deck.class.getDeclaredMethod("shuffleDeck");
-        shuffleMethod.setAccessible(true); // Hace que el método sea accesible
+        shuffleDeckMethod.invoke(deck);
 
-        // Invoca el método shuffleDeck() utilizando reflexión
-        shuffleMethod.invoke(deck);
+        shuffledDeck = deck.getCards();
 
-        // Verifica que las cartas no estén en el mismo orden
-        assertNotEquals(originalOrder, deck.getCards());
+        assertNotEquals(originalDeck, shuffledDeck, "La baraja no se ha mezclado correctamente");
     }
+
 }
+
 
