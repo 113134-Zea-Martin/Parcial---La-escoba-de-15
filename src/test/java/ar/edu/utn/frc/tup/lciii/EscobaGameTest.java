@@ -76,39 +76,38 @@ class EscobaGameTest {
 
     @Test
     void getYesNoAnswerTest_YesAnswer() {
+        EscobaGame escobaGame1 = new EscobaGame();
+        Optional<Method> optionalMethod = ReflectionUtils.findMethod(EscobaGame.class, "getYesNoAnswer", String.class);
+        Boolean result1 = null;
+        Boolean result2 = null;
 
+        if (optionalMethod.isPresent()) {
+            result1 = (Boolean) ReflectionUtils.invokeMethod(optionalMethod.get(), escobaGame1, "n");
+            result2 = (Boolean) ReflectionUtils.invokeMethod(optionalMethod.get(), escobaGame1, "N");
+        } else {
+            fail("Method getYesNoAnswer not found");
+        }
         // TODO: Implementar el test para el método getYesNoAnswer de manera tal que se
         //  pruebe que el método retorna false si se ingresa "n" o "N"
-        fail("Not yet implemented");
+        assertFalse(result1 && result2);
     }
 
     @Test
-    void getYesNoAnswerTest_NoAnswer() throws Exception {
+    void getYesNoAnswerTest_NoAnswer() {
+        EscobaGame escobaGame = new EscobaGame();
+        Optional<Method> optionalMethod = ReflectionUtils.findMethod(escobaGame.getClass(), "getYesNoAnswer", String.class);
+        Boolean result = null;
+        Boolean result2 = null;
 
-        // Arrange
-        String inputY = "y";
-        String inputUpperCaseY = "Y";
-        String inputN = "n";
-        String inputInvalid = "x";
-
-        // Get the private method
-        Method method = EscobaGame.class.getDeclaredMethod("getYesNoAnswer", String.class);
-        method.setAccessible(true); // Make the method accessible
-
-        // Act
-        Boolean resultY = (Boolean) method.invoke(null, inputY);
-        Boolean resultUpperCaseY = (Boolean) method.invoke(null, inputUpperCaseY);
-        Boolean resultN = (Boolean) method.invoke(null, inputN);
-        Boolean resultInvalid = (Boolean) method.invoke(null, inputInvalid);
-
-        // Assert
-        assertTrue(resultY);
-        assertTrue(resultUpperCaseY);
-        assertNull(resultN);
-        assertNull(resultInvalid);
-        // TODO: Implementar el test para el método getYesNoAnswer de manera tal que se
-        //  pruebe que el método retorna true si se ingresa "y" o "Y"
-        fail("Not yet implemented");
+        if (optionalMethod.isPresent()) {
+            result = (Boolean) ReflectionUtils.invokeMethod(optionalMethod.get(), escobaGame, "y");
+            result2 = (Boolean) ReflectionUtils.invokeMethod(optionalMethod.get(), escobaGame, "Y");
+        } else {
+            // TODO: Implementar el test para el método getYesNoAnswer de manera tal que se
+            //  pruebe que el método retorna true si se ingresa "y" o "Y"
+            fail("Method getYesNoAnswer not found");
+        }
+        assertTrue(result && result2);
     }
 
     @Test

@@ -114,7 +114,7 @@ public class EscobaMatch {
      */
     public Boolean isFinish() {
         int winnerPoints;
-        if (Math.max(humanUserPoints, appUserPoints) >= 15) {
+        if (Math.max(humanUserPoints, appUserPoints) >= 15 && !humanUserPoints.equals(appUserPoints)) {
             if (humanUserPoints > appUserPoints) {
                 winner = humanUser;
                 winnerPoints = humanUserPoints;
